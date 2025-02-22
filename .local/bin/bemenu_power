@@ -8,22 +8,22 @@ case $(printf "%s\n" "Lock" "Logout" "Suspend" "Reboot" "Shutdown" | bemenu_runn
     "Shutdown")
         confirm=$(echo -e "Yes\nNo" | $CONFIRM)
         if [[ "$confirm" == "Yes" ]]; then
-            loginctl poweroff
+            systemctl poweroff
         fi
         ;;
     "Reboot")
         confirm=$(echo -e "Yes\nNo" | $CONFIRM)
         if [[ "$confirm" == "Yes" ]]; then
-            loginctl reboot
+            systemctl reboot
         fi
         ;;
     "Suspend")
-        loginctl suspend
+        systemctl suspend
         ;;
     "Lock")
         hyprlock
         ;;
     "Logout")
-        loginctl terminate-session "${XDG_SESSION_ID-}"
+        hyprctl dispatch exit
         ;;
 esac

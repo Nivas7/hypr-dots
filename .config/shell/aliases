@@ -49,7 +49,7 @@ alias yta-mp3='yt-dlp --extract-audio --audio-format mp3 '
 alias ytv-best='yt-dlp -f bestvideo+bestaudio '
 
 # Random
-alias nvm='sudo nvme smart-log /dev/nvme0'
+## alias nvm='sudo nvme smart-log /dev/nvme0'
 alias sudoe='sudoedit'
 #alias dot='/usr/bin/git --git-dir=$HOME/Documents/Projects/dots-sway.git/ --work-tree=$HOME'
 alias dot='/usr/bin/git --git-dir=$HOME/hypr-dots/ --work-tree=$HOME'
