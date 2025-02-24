@@ -24,6 +24,20 @@ ex ()
   fi
 }
 
+function cheat {
+    [ -z $1 ] && echo "no args provided!" || (curl -s cheat.sh/$1 | bat --style=plain)
+}
+
+mkcd() {
+    if [ "$#" -lt 1 ]; then
+        echo "no arguments provided!"
+        return
+    elif [ "$#" -gt 1 ]; then
+        echo "too many arguments! ignoring extra.."
+    fi
+    test -d "$1" || mkdir "$1" && cd "$1"
+}
+
 
 # fkill - kill processes
 fzk() {
