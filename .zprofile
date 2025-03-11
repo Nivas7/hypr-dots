@@ -1,48 +1,72 @@
-# PATH
-export PATH="$HOME/.local/bin:$PATH"
+#!/bin/sh
+# env vars to set on login, zsh settings in ~/config/zsh/.zshrc
+# read first
 
-# XDG Base Directory
+# default programs
+export EDITOR="nvim"
+export TERM="foot"
+export TERMINAL="foot"
+export MUSPLAYER="termusic"
+export BROWSER="firefox"
+export BROWSER2="librewolf"
+
+# follow XDG base dir specification
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
-
-# FZF bases
-export FZF_DEFAULT_OPTS="
-  --color fg:#cdd6f4
-  --color fg+:#cdd6f4
-  --color bg+:#313244
-  --color hl:#f38ba8
-  --color hl+:#f38ba8
-  --color info:#cba6f7
-  --color prompt:#cba6f7
-  --color spinner:#f5e0dc
-  --color pointer:#f5e0dc
-  --color marker:#f5e0dc
-  --color border:#1e1e2e
-  --color header:#f38ba8
-  --prompt ' '
-  --pointer ' λ'
-  --layout=reverse
-  --border horizontal
-  --height 40"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 
+# bootstrap .zshrc to ~/.config/zsh/.zshrc, any other zsh config files can also reside here
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
+# history files
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
 
-# Path
+# add scripts to path
+export PATH="$HOME/.local/bin:$PATH"
+
+# moving other files and some other vars
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0" # gtk 3 & 4 are XDG compliant
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
+# Go Path
+export GOPATH="$XDG_DATA_HOME/go"
+export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:$(go env GOPATH)/bin
+
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export FFMPEG_DATADIR="$XDG_CONFIG_HOME/ffmpeg"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export JAVA_HOME="/usr/lib/jvm/java-23-openjdk/"
 export BUN_INSTALL="/home/nivaz/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH=$PATH:/usr/local/go/bin
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$XDG_DATA_HOME/history"
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+
+# NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 
-# Start Sway environment
-if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec $HOME/.local/bin/hypr-start
-fi
+export FZF_DEFAULT_OPTS="--style minimal --color 16 --layout=reverse --height 30% --preview='bat -p --color=always {}'"
+export FZF_CTRL_R_OPTS="--style minimal --color 16 --info inline --no-sort --no-preview" # separate opts for history widget
+export MANPAGER="less -R --use-color -Dd+r -Du+b" # colored man pages
+
+
+# colored less + termcap vars
+export LESS="R --use-color -Dd+r -Du+b"
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+

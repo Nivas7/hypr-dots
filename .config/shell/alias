@@ -1,21 +1,13 @@
 # Aliases
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias vpm='vpm --color=yes'
-alias df='df -h'
-alias free='free -m'
 alias cp='cp -iv'
 alias mv='mv -iv'
 # this is to prevent accidental deletion of files with rm, use \rm to actually remove, TODO: start using trash-cli
-alias paru='paru -a'
-alias trm='trash-put'
 alias rm='rm -vI'
 alias mkdir='mkdir -pv'
-alias ..='cd ..'
-alias history='fc -l 1'
+alias c="clear"
+alias v="nvim"
 
-alias jupy="coa pyimg;jupyter notebook"
 alias npc="ncmpcpp"
 alias playalert="mpv --really-quiet ~/.local/share/sounds/complete.ogg"
 
@@ -24,9 +16,12 @@ alias playalert="mpv --really-quiet ~/.local/share/sounds/complete.ogg"
 #alias vim='nvim'
 
 # Dir / eza
-alias ls='eza -al --group-directories-first --color=always'
-alias la='eza -a --group-directories-first --color=always'
-alias ll='eza -l --group-directories-first --color=always'
+# alias ls='eza -al --group-directories-first --color=always'
+# alias la='eza -a --group-directories-first --color=always'
+# alias ll='eza -l --group-directories-first --color=always'
+#
+alias  ls="ls -h --color=auto --group-directories-first" \
+alias la="ls -lah --color=auto --group-directories-first" \
 
 # Pacman
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
@@ -37,31 +32,6 @@ alias pacsyyu='sudo pacman -Syyu'                # synchronize with the reposito
 alias pacdifc='sudo DIFFPROG=meld pacdiff'       # merge or remove pacnew files
 alias yep='paru -Pw && paru'                       # Show Arch news before update
 
-# Trash-cli
-alias tp='trash-put'
-alias tpe='trash-empty'
-alias tpr='trash-restore'
-
-
-# System Journal
-alias loger='journalctl -p 3 -xb'
-alias logf='journalctl -f'
-alias logr='sudo journalctl --rotate'
-alias logs='journalctl --disk-usage'
-alias logv='journalctl --verify'
-alias logw='sudo journalctl --vacuum-time=1s'
-
-# yt-dlp
-alias yta-mp3='yt-dlp --extract-audio --audio-format mp3 '
-alias ytv-best='yt-dlp -f bestvideo+bestaudio '
-
-# life improvements
-alias update="sudo pacman -Syu"
-alias myip="curl ipinfo.io/ip"
-
-
-# Random
-## alias nvm='sudo nvme smart-log /dev/nvme0'
 alias sudoe='sudoedit'
 #alias dot='/usr/bin/git --git-dir=$HOME/Documents/Projects/dots-sway.git/ --work-tree=$HOME'
 alias dot='/usr/bin/git --git-dir=$HOME/hypr-dots/ --work-tree=$HOME'
